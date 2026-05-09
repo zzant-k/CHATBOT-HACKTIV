@@ -1,0 +1,519 @@
+/* 
+   Haje AI Assistant Widget CSS 
+   Modern, Clean, Dark Mode UI
+*/
+
+/* --- Variables --- */
+:root {
+    --haje-primary: #000000;
+    --haje-primary-hover: #333333;
+    --haje-bg-glass: rgba(18, 18, 18, 0.75);
+    --haje-bg-solid: #121212;
+    --haje-surface: #1e1e1e;
+    --haje-surface-light: #2a2a2a;
+    --haje-text: #ffffff;
+    --haje-text-muted: #a1a1aa;
+    --haje-border: rgba(255, 255, 255, 0.1);
+    --haje-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    --haje-radius-lg: 20px;
+    --haje-radius-md: 12px;
+    --haje-radius-sm: 8px;
+    --haje-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --haje-z-index: 2147483647; /* Maximum z-index to stay on top */
+}
+
+/* --- Base Reset for Widget --- */
+.haje-widget-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: var(--haje-z-index);
+    font-family: var(--haje-font);
+    color: var(--haje-text);
+    box-sizing: border-box;
+    pointer-events: none; /* Let clicks pass through container */
+}
+
+.haje-widget-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Floating Button --- */
+.haje-floating-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--haje-primary);
+    border: 1px solid var(--haje-border);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: auto; /* Enable clicks */
+}
+
+.haje-floating-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+.haje-floating-btn:active {
+    transform: scale(0.95);
+}
+
+.haje-btn-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.haje-online-indicator {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #ffffff;
+    border: 3px solid var(--haje-bg-solid);
+    border-radius: 50%;
+}
+
+/* --- Chat Popup --- */
+.haje-chat-popup {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px;
+    height: 600px;
+    max-height: calc(100vh - 120px);
+    background: var(--haje-bg-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--haje-border);
+    border-radius: var(--haje-radius-lg);
+    box-shadow: var(--haje-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transform-origin: bottom right;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; /* Initially non-interactive */
+}
+
+.haje-chat-popup.haje-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.haje-chat-popup.haje-minimized {
+    height: 70px !important;
+    overflow: hidden;
+}
+
+/* --- Header --- */
+.haje-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--haje-bg-solid);
+    border-bottom: 1px solid var(--haje-border);
+}
+
+.haje-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.haje-header-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--haje-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden; /* Tambahkan ini agar foto bulat sempurna */
+}
+
+.haje-header-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.haje-title {
+    color: var(--haje-text);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.haje-subtitle {
+    font-size: 12px;
+    color: var(--haje-text-muted);
+    margin: 4px 0 0 0;
+}
+
+.haje-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.haje-icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--haje-text-muted);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.haje-icon-btn:hover {
+    background: var(--haje-surface);
+    color: var(--haje-text);
+}
+
+.haje-icon-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Chat Body --- */
+.haje-chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: transparent;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.haje-chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+.haje-chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.haje-chat-body::-webkit-scrollbar-thumb {
+    background: var(--haje-surface-light);
+    border-radius: 10px;
+}
+.haje-chat-body::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Messages */
+.haje-message-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    animation: hajeFadeInUp 0.3s ease;
+}
+
+@keyframes hajeFadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.haje-message-user {
+    align-self: flex-end;
+}
+
+.haje-message-ai {
+    align-self: flex-start;
+}
+
+.haje-message-bubble {
+    padding: 12px 16px;
+    border-radius: var(--haje-radius-md);
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.haje-message-user .haje-message-bubble {
+    background: var(--haje-primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.haje-message-ai .haje-message-bubble {
+    background: var(--haje-surface);
+    color: var(--haje-text);
+    border: 1px solid var(--haje-border);
+    border-bottom-left-radius: 4px;
+}
+
+/* Typograpghy inside AI message (markdown support basic) */
+.haje-message-ai .haje-message-bubble pre,
+.haje-message-ai .haje-message-bubble code {
+    background: var(--haje-bg-solid);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.haje-message-ai .haje-message-bubble pre {
+    padding: 10px;
+    overflow-x: auto;
+    margin: 8px 0;
+}
+
+/* --- Typing Indicator --- */
+.haje-typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    align-items: center;
+}
+
+.haje-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--haje-text-muted);
+    border-radius: 50%;
+    animation: hajeBounce 1.4s infinite ease-in-out both;
+}
+
+.haje-dot:nth-child(1) { animation-delay: -0.32s; }
+.haje-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes hajeBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/* --- File Preview --- */
+.haje-file-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--haje-surface-light);
+    padding: 8px 12px;
+    border-radius: var(--haje-radius-sm);
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--haje-text);
+    display: none; /* hidden by default */
+}
+
+.haje-file-preview.haje-active {
+    display: flex;
+}
+
+.haje-file-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.haje-file-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+/* --- Footer & Input --- */
+.haje-footer {
+    padding: 16px;
+    background: var(--haje-bg-solid);
+    border-top: 1px solid var(--haje-border);
+}
+
+.haje-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--haje-surface);
+    border: 1px solid var(--haje-border);
+    border-radius: var(--haje-radius-lg);
+    padding: 6px 16px;
+    transition: border-color 0.2s;
+}
+
+.haje-input-wrapper:focus-within {
+    border-color: var(--haje-primary);
+}
+
+.haje-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--haje-text);
+    font-size: 14px;
+    padding: 10px 0;
+    outline: none;
+    font-family: var(--haje-font);
+}
+
+.haje-input::placeholder {
+    color: var(--haje-text-muted);
+}
+
+.haje-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 8px;
+}
+
+.haje-action-btn {
+    background: transparent;
+    border: none;
+    color: var(--haje-text-muted);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.haje-action-btn:hover {
+    color: var(--haje-text);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.haje-action-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Tooltip for upload buttons */
+.haje-action-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: var(--haje-surface-light);
+    color: var(--haje-text);
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.haje-action-btn:hover::after {
+    opacity: 1;
+}
+
+.haje-send-btn {
+    background: var(--haje-primary);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.haje-send-btn:hover {
+    background: var(--haje-primary-hover);
+    transform: scale(1.05);
+}
+
+.haje-send-btn:active {
+    transform: scale(0.95);
+}
+
+.haje-send-btn svg {
+    width: 16px;
+    height: 16px;
+    margin-left: -2px; /* Visual balance */
+}
+
+.haje-send-btn:disabled {
+    background: var(--haje-surface-light);
+    color: var(--haje-text-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+    .haje-widget-container {
+        bottom: 85px; /* Dinaikkan agar tidak tumpang tindih dengan bottom-nav aplikasi */
+        right: 16px;
+    }
+
+    .haje-chat-popup {
+        width: calc(100vw - 32px);
+        height: 65vh; /* Menyesuaikan tinggi layar agar keyboard tidak menutupi penuh */
+        max-height: 500px;
+        bottom: 70px; /* Jarak dari floating button */
+        right: 0;
+        border-radius: var(--haje-radius-md);
+        border: 1px solid var(--haje-border);
+    }
+    
+    /* Merapikan Box Bawah (Footer / Input) */
+    .haje-footer {
+        padding: 12px;
+    }
+
+    .haje-input-wrapper {
+        padding: 6px 12px;
+    }
+    
+    .haje-input {
+        font-size: 13px; /* Ukuran font disesuaikan agar tidak memicu zoom-in otomatis di iOS */
+    }
+    
+    .haje-actions {
+        margin-right: 4px;
+        gap: 2px;
+    }
+    
+    .haje-action-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .haje-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .haje-send-btn {
+        width: 34px;
+        height: 34px;
+    }
+}
