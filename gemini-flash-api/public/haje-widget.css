@@ -32,7 +32,9 @@
     pointer-events: none;
 }
 
-.haje-widget-container * {
+.haje-widget-container *,
+.haje-widget-container ::before,
+.haje-widget-container ::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -370,14 +372,14 @@
 
 .haje-input {
     flex: 1;
+    min-width: 0; /* Critical for shrinking */
     background: transparent;
     border: none;
     color: var(--haje-text);
     font-size: 14px;
-    padding: 12px 0;
+    padding: 10px 0;
     outline: none;
     font-family: var(--haje-font);
-    min-width: 0;
 }
 
 .haje-input::placeholder { color: var(--haje-text-muted); }
@@ -477,35 +479,56 @@
 /* --- Mobile tweaks --- */
 @media (max-width: 768px) {
     .haje-floating-btn {
-        bottom: 88px; /* clear nav bar */
-        right: 20px;
-        width: 56px;
-        height: 56px;
+        bottom: 80px;
+        right: 16px;
     }
 
-    .haje-chat-body { padding: 16px; }
+    .haje-chat-popup {
+        width: 100% !important;
+        height: 100% !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0;
+    }
 
-    .haje-input { font-size: 16px; } /* prevent iOS zoom */
+    .haje-chat-body { padding: 12px; }
 
     .haje-footer { 
-    padding: 12px 16px 30px 12px; 
-}
-    
-    .haje-chat-popup {
-        width: 100%;
-        height: 100%;
+        padding: 10px 10px env(safe-area-inset-bottom, 20px) 10px;
     }
     
+    .haje-input-container {
+        gap: 8px;
+    }
+
     .haje-input-wrapper {
-        padding: 2px 8px 2px 14px;
+        padding: 0 8px 0 14px;
+        border-radius: 20px;
     }
-    
+
+    .haje-input {
+        font-size: 16px; /* Best for mobile input */
+        padding: 8px 0;
+    }
+
     .haje-actions {
-        gap: 0px;
+        margin-left: 4px;
+        gap: 0;
     }
-    
+
     .haje-action-btn {
         width: 28px;
         height: 28px;
+    }
+    
+    .haje-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .haje-send-btn {
+        width: 38px;
+        height: 38px;
+        margin-right: 0;
     }
 }
