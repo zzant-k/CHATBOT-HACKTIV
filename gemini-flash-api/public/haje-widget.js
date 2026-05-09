@@ -26,7 +26,8 @@
             <div class="haje-header">
                 <div class="haje-header-info">
                     <div class="haje-header-avatar">
-                        <img src="/foto haje.jpeg" alt="Haje" onerror="this.style.display='none'">
+                        <img src="/foto%20haje.jpeg" alt="H"
+                             onerror="this.style.display='none';this.parentNode.setAttribute('data-fallback','H')">
                     </div>
                     <div>
                         <h3 class="haje-title">Haje AI Assistant</h3>
@@ -62,41 +63,43 @@
                     </button>
                 </div>
 
-                <div class="haje-input-wrapper">
-                    <input type="text" id="haje-chat-input" class="haje-input"
-                           placeholder="Tanya Haje sesuatu..." autocomplete="off">
+                <div class="haje-input-container">
+                    <div class="haje-input-wrapper">
+                        <input type="text" id="haje-chat-input" class="haje-input"
+                               placeholder="Tanya Haje sesuatu..." autocomplete="off">
 
-                    <div class="haje-actions">
-                        <button class="haje-action-btn" data-tooltip="Gambar"
-                                onclick="document.getElementById('haje-image-upload').click()">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                        </button>
-                        <input type="file" id="haje-image-upload" accept="image/*" style="display:none;">
+                        <div class="haje-actions">
+                            <button class="haje-action-btn" data-tooltip="Gambar"
+                                    onclick="document.getElementById('haje-image-upload').click()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                            </button>
+                            <input type="file" id="haje-image-upload" accept="image/*" style="display:none;">
 
-                        <button class="haje-action-btn" data-tooltip="Dokumen"
-                                onclick="document.getElementById('haje-doc-upload').click()">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                            </svg>
-                        </button>
-                        <input type="file" id="haje-doc-upload" accept=".pdf,.doc,.docx,.txt" style="display:none;">
+                            <button class="haje-action-btn" data-tooltip="Dokumen"
+                                    onclick="document.getElementById('haje-doc-upload').click()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg>
+                            </button>
+                            <input type="file" id="haje-doc-upload" accept=".pdf,.doc,.docx,.txt" style="display:none;">
 
-                        <button class="haje-action-btn" data-tooltip="Audio"
-                                onclick="document.getElementById('haje-audio-upload').click()">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                                <line x1="12" y1="19" x2="12" y2="23"/>
-                                <line x1="8" y1="23" x2="16" y2="23"/>
-                            </svg>
-                        </button>
-                        <input type="file" id="haje-audio-upload" accept="audio/*" style="display:none;">
+                            <button class="haje-action-btn" data-tooltip="Audio"
+                                    onclick="document.getElementById('haje-audio-upload').click()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                    <line x1="12" y1="19" x2="12" y2="23"/>
+                                    <line x1="8" y1="23" x2="16" y2="23"/>
+                                </svg>
+                            </button>
+                            <input type="file" id="haje-audio-upload" accept="audio/*" style="display:none;">
+                        </div>
                     </div>
 
                     <button id="haje-send-btn" class="haje-send-btn" aria-label="Kirim">
