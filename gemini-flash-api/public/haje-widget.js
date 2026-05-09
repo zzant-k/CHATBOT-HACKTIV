@@ -26,7 +26,7 @@
             <div class="haje-header">
                 <div class="haje-header-info">
                     <div class="haje-header-avatar">
-                        <img src="foto haje.jpeg" alt="Haje" onerror="this.style.display='none'">
+                        <img src="/foto haje.jpeg" alt="Haje" onerror="this.style.display='none'">
                     </div>
                     <div>
                         <h3 class="haje-title">Haje AI Assistant</h3>
