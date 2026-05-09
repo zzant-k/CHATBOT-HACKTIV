@@ -88,7 +88,7 @@
     document.body.insertAdjacentHTML('beforeend', widgetHTML);
 
     // === 2. Variables & State ===
-    const API_BASE_URL = 'http://localhost:3000';
+    const API_BASE_URL = '';
     let activeFile = null;
     let activeFileType = null; // 'image', 'document', 'audio'
     let isWelcomeMessageShown = false;
